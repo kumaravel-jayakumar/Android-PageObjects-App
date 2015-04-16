@@ -4,9 +4,9 @@
     <string name="app_name">Page Objects Demo Application</string>
     <string name="page_objects_text_view_value">Page Objects Demo</string>
     <string name="action_button_default_value">Tap</string>
-    <string name="single_tap_button_name">Single Tap</string>
+    <string name="single_tap_button_name">Short Press</string>
     <string name="single_tap_button_output_value"></string>
-    <string name="double_tap_button_name">Double Tap</string>
+    <string name="double_tap_button_name">Long Press</string>
     <string name="double_tap_button_output_value"></string>
     <string name="double_touch_button_name">Two Finger Tap</string>
     <string name="double_touch_button_output_value"></string>

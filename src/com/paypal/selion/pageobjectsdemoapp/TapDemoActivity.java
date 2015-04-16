@@ -14,34 +14,39 @@ import android.widget.TextView;
 
 public class TapDemoActivity extends ActionBarActivity {
 
-	private GestureDetector gestureDetector;
+	private GestureDetector shortPressGestureDetector;
+	
+	private GestureDetector longPressGestureDetector;
 
-	private Button singleTapButton;
+	private Button shortPressButton;
 
-	private Button doubleTapButton;
+	private Button longPressButton;
 
-	private TextView singleTapTextView;
+	private TextView shortPressTextView;
 
-	private TextView doubleTapTextView;
+	private TextView longPressTextView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tap_demo);
-		gestureDetector = new GestureDetector(this, new GestureListener());
-		singleTapButton = (Button) findViewById(R.id.single_tap_button);
-		doubleTapButton = (Button) findViewById(R.id.double_tap_button);
-		singleTapTextView = (TextView) findViewById(R.id.single_tap_button_output);
-		doubleTapTextView = (TextView) findViewById(R.id.double_tap_button_output);
+		shortPressGestureDetector = new GestureDetector(this,
+				new ShortPressGestureListener());
+		longPressGestureDetector = new GestureDetector(this,
+				new LongPressGestureListener());
+		shortPressButton = (Button) findViewById(R.id.short_press_button);
+		longPressButton = (Button) findViewById(R.id.long_press_button);
+		shortPressTextView = (TextView) findViewById(R.id.short_press_button_output);
+		longPressTextView = (TextView) findViewById(R.id.long_press_button_output);
 		setupSingleTapButton();
 		setupDoubleTapButton();
 	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		singleTapTextView.setText("");
-		doubleTapTextView.setText("");
+		shortPressTextView.setText("");
+		longPressTextView.setText("");
 	}
 
 	@Override
@@ -62,47 +67,51 @@ public class TapDemoActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	private void setupSingleTapButton() {
-		singleTapButton.setOnClickListener(new View.OnClickListener() {
+		shortPressButton.setOnTouchListener(new View.OnTouchListener() {
 			@Override
-			public void onClick(View v) {
-				handleSingleTap(v);
+			public boolean onTouch(View v, MotionEvent event) {
+				return shortPressGestureDetector.onTouchEvent(event);
 			}
 		});
-		
 	}
 
 	private void setupDoubleTapButton() {
-		doubleTapButton.setOnTouchListener(new View.OnTouchListener() {
+		longPressButton.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
-				Log.i("TapDemoActivity", "on touch called");
-				boolean doubleTapped = gestureDetector.onTouchEvent(event);
-				if (doubleTapped) {
-					handleDoubleTap(v);
-				}
-				return doubleTapped;
+				return longPressGestureDetector.onTouchEvent(event);
 			}
 		});
 	}
 
-	private void handleSingleTap(View v) {
-		singleTapTextView.setText("Tap Count: 1");
-	}
-	
-	private void handleDoubleTap(View v) {
-		doubleTapTextView.setText("Tap Count: 2");
-	}
-
-	public static class GestureListener extends
+	public class LongPressGestureListener extends
 			GestureDetector.SimpleOnGestureListener {
+
+		@Override
+		public void onLongPress(MotionEvent e) {
+			longPressTextView.setText("x= " + e.getRawX() + ",y= "
+					+ e.getRawY() + ", long press");
+		}
 
 		@Override
 		public boolean onDoubleTap(MotionEvent e) {
 			Log.i("TapDemoActivity", "Double tap fired");
 			return true;
 		}
-		
+
+	}
+
+	public class ShortPressGestureListener extends
+			GestureDetector.SimpleOnGestureListener {
+
+		@Override
+		public boolean onDown(MotionEvent e) {
+			shortPressTextView.setText("x= " + e.getRawX() + ",y= "
+					+ e.getRawY() + ", short press");
+			return true;
+		}
+
 	}
 }

@@ -9,7 +9,7 @@
     tools:context="com.paypal.selion.pageobjectsdemoapp.PageObjectsHomeActivity" >
     
     <Button
-        android:id="@+id/single_tap_button"
+        android:id="@+id/short_press_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -17,29 +17,29 @@
         android:text="@string/single_tap_button_name" />
 
     <TextView
-        android:id="@+id/single_tap_button_output"
+        android:id="@+id/short_press_button_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/short_press_button"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/single_tap_button"
         android:layout_marginTop="30dp"
         android:text="@string/single_tap_button_output_value" />
 
     <Button
-        android:id="@+id/double_tap_button"
+        android:id="@+id/long_press_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/short_press_button_output"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/single_tap_button_output"
         android:layout_marginTop="30dp"
         android:text="@string/double_tap_button_name" />
 
     <TextView
-        android:id="@+id/double_tap_button_output"
+        android:id="@+id/long_press_button_output"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/long_press_button"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/double_tap_button"
         android:layout_marginTop="30dp"
         android:text="@string/double_tap_button_output_value" />
 
