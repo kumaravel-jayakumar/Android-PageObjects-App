@@ -44,4 +44,16 @@
         android:layout_marginTop="30dp"
         android:text="@string/double_tap_button_output_value" />
 
+    <EditText
+        android:id="@+id/edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/long_press_button_output"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
 </RelativeLayout>
